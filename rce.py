@@ -14,8 +14,7 @@ def test():
 
 @app.get('/getoutput')
 def codeexecute():
-    #output=sandbox.dockersandbox()
-    output=''
+    output=sandbox.dockersandbox()
     file=os.listdir()
     if 'input.py' in file:
         os.remove('input.py')
