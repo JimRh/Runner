@@ -1,9 +1,8 @@
 from flask import Flask, request,Response
-import docker
 
 import os
 import sandbox
-import pika
+
 app = Flask(__name__)
 
 flag=False
@@ -52,55 +51,5 @@ def handle_request():
 if __name__ == '__main__':
     app.run(debug=True)
 
-'''from flask import Flask,request,Response
-import pika
 
-app = Flask(__name__)
-
-
-@app.route('/')
-def index():
-    return 'OK'
-
-
-@app.post('/run')
-def add():
-    lang = 'python'
-    language = request.data
-    code = language.decode('utf-8')
-
-    if lang == 'python':
-        file = open('input.py', 'w')
-        file.write(code)
-
-    else:
-        file = open('input.cpp', 'w')
-        file.write(code)
-    try:
-        connection = pika.BlockingConnection(pika.ConnectionParameters(host="localhost"))
-    except pika.exceptions.AMQPConnectionError as exc:
-        print("Failed to connect to RabbitMQ service. Message wont be sent.")
-        return
-
-    channel = connection.channel()
-    channel.queue_declare(queue='task_queue', durable=True)
-
-    channel.basic_publish(
-        exchange='',
-        routing_key='task_queue',
-        body='run_docker_container',
-       )
-    def dockerrunner():
-        for body in channel.consume():
-            yield body
-            break
-
-
-
-    connection.close()
-    return Response(dockerrunner(), direct_passthrough=True)
-
-
-if __name__ == '__main__':
-    app.run(debug=True)'''
 
