@@ -3,7 +3,7 @@ import os
 
 def dockersandbox():
 
-    client = docker.from_env(base_url='unix://var/run/docker.sock')
+    client = docker.from_env('unix://var/run/docker.sock')
     image = client.images.pull("jimrhh/rce2:latest")
 
     container = client.containers.run(
