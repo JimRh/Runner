@@ -2,7 +2,7 @@ from flask import Flask, request,Response
 
 import os
 import sandbox
-
+import subprocess
 app = Flask(__name__)
 
 flag=False
@@ -14,12 +14,15 @@ def test():
 
 @app.get('/getoutput')
 def codeexecute():
-    output=sandbox.dockersandbox()
+    script='bash shell.sh'
+    output=subprocess.run(script, shell=True,stdout=subprocess.PIPE)
+    output=output.stdout.decode('utf-8')
     file=os.listdir()
     if 'input.py' in file:
         os.remove('input.py')
     if 'input.cpp' in file:
         os.remove('input.cpp')
+
     return output
 
 @app.post('/run')

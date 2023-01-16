@@ -1,9 +1,9 @@
 import docker
 import os
+import subprocess
+'''def dockersandbox():
 
-def dockersandbox():
-
-    client = docker.from_env('unix://var/run/docker.sock')
+    client = docker.from_env()
     image = client.images.pull("jimrhh/rce2:latest")
 
     container = client.containers.run(
@@ -20,6 +20,6 @@ def dockersandbox():
    
 
 
-dockersandbox()
+dockersandbox()'''
 
 
